@@ -4,10 +4,10 @@
 > [Sina Malakouti](https://sinamalakouti.github.io/), [Deepti Ghadiyaram](https://deeptigp.github.io/), [Boqing Gong](https://boqinggong.github.io/), [Adriana Kovashka](https://people.cs.pitt.edu/~kovashka/)
 
 [![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://sinamalakouti.github.io/CulturalVectors/)
-[![Paper](https://img.shields.io/badge/Paper-OpenReview-red)](https://openreview.net/forum?id=opG4m2U0Oo)
-[![arXiv](https://img.shields.io/badge/arXiv-2511.05681-b31b1b.svg)](https://arxiv.org/abs/2511.05681)
+[![Paper](https://sinamalakouti.github.io/CulturalVectors/)
+[![arXiv]([https://img.shields.io/badge/arXiv-2511.05681-b31b1b.svg)](https://arxiv.org/abs/2511.05681](https://sinamalakouti.github.io/CulturalVectors/))
 
-> **Note:** This repository is under development. Code, pretrained cultural vectors, and detailed reproduction instructions will be added soon.
+> **Note:** This repository is under development. 
 
 ## Overview
 
