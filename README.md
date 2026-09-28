@@ -1,187 +1,186 @@
-# Culture in Action: Evaluating Text-to-Image Models through Social Activities (ICLR 2026)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-> [Sina Malakouti](https://sinamalakouti.github.io/), [Boqing Gong](https://boqinggong.github.io/), [Adriana Kovahka](https://people.cs.pitt.edu/~kovashka/)
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Learning Cultural Vectors for Cross-Cultural Generation - Sina Malakouti, Deepti Ghadiyaram, Boqing Gong, Adriana Kovashka">
+  <meta name="description" content="Learning controllable cultural representations in text-to-image diffusion models through cultural vectors, with analysis of scaling, synthetic data, representation structure, compositionality, and cross-cultural generalization.">
+  <meta name="keywords" content="Cultural Generation, Text-to-Image Models, Diffusion Models, Cultural Vectors, Task Vectors, Model Merging, Cross-Cultural Generation">
+  <meta name="author" content="Sina Malakouti, Deepti Ghadiyaram, Boqing Gong, Adriana Kovashka">
 
-[![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://sinamalakouti.github.io/AHEaD/)
-[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97_Hugging_Face-CultiVATE-ffcc00)](https://huggingface.co/datasets/sinamalakouti/CultiVATE)
-[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97_Hugging_Face-CultiVATE--real-ffcc00)](https://huggingface.co/datasets/sinamalakouti/CultiVATE-real)
+  <title>Learning Cultural Vectors for Cross-Cultural Generation</title>
 
-Note: this repo is under development to provide the tools that is easy to use by other researchers across different applications, please reach out to [Sina Malakouti](https://sinamalakouti.github.io/) if you have any questions or concern regarding this repo!
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
 
-## Datasets
+  <!-- CSS -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-🤗 **Hugging Face**
+  <!-- JS -->
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+</head>
 
-- Generated images (T2I models): [`sinamalakouti/CultiVATE`](https://huggingface.co/datasets/sinamalakouti/CultiVATE)
-- Real images (top-5) for the EXAG (exaggeration) metric: [`sinamalakouti/CultiVATE-real`](https://huggingface.co/datasets/sinamalakouti/CultiVATE-real) (access requires approval)
+<body>
 
-```python
-from datasets import load_dataset
+<main id="main-content">
 
-gen = load_dataset("sinamalakouti/CultiVATE", "generated", split="test")
-real = load_dataset("sinamalakouti/CultiVATE-real", "real", split="test")
-```
+<!-- HERO -->
+<section class="hero">
+<div class="hero-body">
+<div class="container is-max-desktop">
+<div class="columns is-centered">
+<div class="column has-text-centered">
 
-## Install
+<h1 class="title is-1 publication-title">
+Learning Cultural Vectors for Cross-Cultural Generation
+</h1>
 
-```bash
-git clone https://github.com/sinamalakouti/AHEaD.git
-cd AHEaD
-pip install -e .
-```
+<p class="is-size-6 has-text-grey" style="margin-bottom: 1rem;">
+this page is under development
+</p>
 
-API_KEYS: `OPENAI_API_KEY`, `GOOGLE_API_KEY` (or `GEMINI_API_KEY`).
+<div class="is-size-5 publication-authors">
+<span class="author-block">
+<a href="https://sinamalakouti.github.io">Sina Malakouti</a>,
+</span>
+<span class="author-block">
+<a href="https://deeptigp.github.io/">Deepti Ghadiyaram</a>,
+</span>
+<span class="author-block">
+<a href="https://boqinggong.github.io/">Boqing Gong</a>,
+</span>
+<span class="author-block">
+<a href="https://people.cs.pitt.edu/~kovashka/">Adriana Kovashka</a>
+</span>
+</div>
 
-This repository consists of three main sections: 
+<div class="is-size-5 publication-authors">
+<span class="author-block">
+University of Pittsburgh and Boston University<br>
+The Fortieth Annual Conference on Neural Information Processing Systems (NeurIPS), 2026
+</span>
+</div>
 
-1. **cultivatebench** — generate CULTIVate images from CultureBench prompts
-2. **proposer_refiner** — reference descriptors (propose → union → refine)
-3. **metrics** — ALIGN, HAL, EXAG, DDIV, SDIV
+<div class="column has-text-centered">
+<div class="publication-links">
 
----
+<span class="link-block">
+<a href="https://github.com/sinamalakouti/CulturalVectors" target="_blank"
+class="external-link button is-normal is-rounded is-dark">
+<span class="icon"><i class="fab fa-github"></i></span>
+<span>Code</span>
+</a>
+</span>
 
-## 1. CULTIVateBench
+<span class="link-block">
+<a href="https://openreview.net/forum?id=opG4m2U0Oo" target="_blank"
+class="external-link button is-normal is-rounded is-dark">
+<span class="icon"><i class="fas fa-file-pdf"></i></span>
+<span>Paper</span>
+</a>
+</span>
 
-Catalog: [data/culturebench](https://github.com/sinamalakouti/AHEaD/tree/master/data/culturebench)  
-(`culturebench_prompts.json`). Prompt template: `A photorealistic photo of {phrase} in {country}.`
+<span class="link-block">
+<a href="https://arxiv.org/abs/2511.05681" target="_blank"
+class="external-link button is-normal is-rounded is-dark">
+<span class="icon"><i class="ai ai-arxiv"></i></span>
+<span>arXiv</span>
+</a>
+</span>
 
-Public models: `stable-diffusion-3.5-medium`, `FLUX.1-dev`, `Qwen-Image` (distilled version)
-Proprietary: `dall-e-3`, `gpt-image-1`, `gemini-2.5-flash-image-preview`)
+</div>
+</div>
 
-### Python
+</div>
+</div>
+</div>
+</div>
+</section>
 
-```python
-from ahead.cultivatebench import BenchmarkGenerator, load_catalog
 
-items = load_catalog("cultivate", countries=["IRAN", "USA"])
-BenchmarkGenerator(t2i="FLUX.1-dev", seed=42).generate(items, output_dir="images/")
-```
+<!-- ABSTRACT -->
+<section class="section hero is-light">
+<div class="container is-max-desktop">
+<div class="columns is-centered has-text-centered">
+<div class="column is-four-fifths">
 
-### CLI
+<h2 class="title is-3">Abstract</h2>
 
-```bash
-# official catalog (alias "cultivate")
-python scripts/generate_benchmark.py \
-  --t2i FLUX.1-dev \
-  --catalog cultivate \
-  --countries IRAN USA \
-  --out images/
+<div class="content has-text-justified">
+<p>
+We study cultural vectors as controllable representations of cultural knowledge in text-to-image diffusion models. First, we show that they can be learned effectively from synthetic data and that inference-time scaling controls the trade-off between cultural alignment and exaggeration. Second, we analyze their properties, including where cultural information is encoded in the U-Net and how cultural vectors behave in activation space. Third, we study their compositionality for multi-cultural behavior and cross-cultural generation, and show that naive composition introduces interference between cultural vectors. We then explore two complementary directions for improving composition, learning more independent cultural representations and using culturally aware merging.
+</p>
+</div>
 
-# local catalog
-python scripts/generate_benchmark.py \
-  --t2i gpt-image-1 \
-  --catalog /path/to/culturebench_prompts.json \
-  --countries IRAN \
-  --out images/
-```
+</div>
+</div>
+</div>
+</section>
 
----
 
-## 2. Proposer–refiner
-Default:
-- Proposers: `gemini-2.5-flash` and `gpt-4o`
-- Refiners: `gpt-4o`
+<!-- INTRO / METHOD OVERVIEW -->
+<section class="section">
+<div class="container is-max-desktop">
+<div class="columns is-centered">
+<div class="column has-text-centered">
 
-```python
-from ahead.proposer_refiner import ProposerRefiner
+<img src="static/images/intro.png"
+     alt="Overview of Learning Cultural Vectors for Cross-Cultural Generation"
+     loading="lazy"/>
 
-refs = ProposerRefiner().generate("people eating food at home", country="IRAN")
-# {dimension: ["token", ...]}
-```
+<p class="subtitle has-text-centered">
+Overview of cultural vector learning, analysis, and cross-cultural composition.
+</p>
 
-Step by step:
+</div>
+</div>
+</div>
+</section>
 
-```python
-from ahead.proposer_refiner import (
-    LLMDescriptorProposer,
-    LLMDescriptorRefiner,
-    union_descriptors,
-)
 
-proposer = LLMDescriptorProposer()
-a = proposer.propose("gpt-4o", "people eating food at home in Iran")
-b = proposer.propose("gemini-2.5-flash", "people eating food at home in Iran")
-cands = union_descriptors([a, b])
-refs = LLMDescriptorRefiner().refine(
-    "gpt-4o", cands, "people eating food at home", "IRAN"
-)
-```
+<!-- BIBTEX -->
+<!--
+<section class="section" id="BibTeX">
+<div class="container is-max-desktop content">
 
----
+<div class="bibtex-header">
+<h2 class="title">BibTeX</h2>
+</div>
 
-## 3. Metrics
+<pre><code>@inproceedings{
+malakouti2026culturalvectors,
+title={Learning Cultural Vectors for Cross-Cultural Generation},
+author={Sina Malakouti and Deepti Ghadiyaram and Boqing Gong and Adriana Kovashka},
+booktitle={The Fortieth Annual Conference on Neural Information Processing Systems},
+year={2026}
+}</code></pre>
 
-| Metric | Modes |
-|---|---|
-| **ALIGN**  * **HAL** | `single-image` (default, N scores) / `multi-image`|
-| **EXAG** | uses VQAScore as ITA by default, single image|
-| **DDIV** / **SDIV** | `multi-image` only |
+</div>
+</section>
+-->
 
-### ALIGN / HAL / DDIV / SDIV
+</main>
 
-```python
-from ahead.metrics import AheadMetrics
 
-preds = [
-    {"objects": ["clay diya", "rangoli"], "attire": ["silk saree"]},
-    {"objects": ["oil lamp"], "attire": ["kurta"]},
-]
-refs = {"objects": ["diya", "rangoli"], "attire": ["saree", "kurta"]}
+<footer class="footer">
+<div class="container">
+<div class="columns is-centered">
+<div class="column is-8">
+<div class="content">
+<p>
+This page was built using the Academic Project Page Template.
+</p>
+</div>
+</div>
+</div>
+</div>
+</footer>
 
-m = AheadMetrics(matcher="embedding", threshold=0.52)
-
-align_scores = m.align.score(preds=preds, refs=refs_list)         
-hal_scores = m.hal.score(preds=preds, refs=refs_list)
-
-pooled = m.align.score(preds=preds, refs=refs, mode="multi-image") 
-print(pooled.value, pooled.per_descriptor)
-
-print(m.ddiv.score(preds=preds, refs=refs).value)
-print(m.sdiv.score(preds=preds, refs=refs).value)
-
-print(m.align.rank(pooled, k=3))  
-hal = m.hal.score(preds=preds, refs=refs, mode="multi-image")
-print(m.hal.rank(hal, k=3))     
-```
-
-Extract descriptors from images:
-
-```python
-m = AheadMetrics(matcher="embedding", extractor="gpt-4o")
-paths = ["/path/to/000.png", "/path/to/001.png"]
-m.align.score(
-    images=paths,
-    refs=[refs, refs],
-    concept="people eating food at home",
-)
-```
-
-### EXAG
-
-```python
-from ahead.backbones.ita import get_scorer
-from ahead.metrics import AheadMetrics, StereotypeCandidateGenerator
-
-cands = StereotypeCandidateGenerator(llm="gpt-4o").generate(context="IRAN")
-m = AheadMetrics(matcher="embedding", scorer=get_scorer("vqascore"))
-
-ex = m.exag.score(
-    images=["/path/to/gen.png"],
-    candidates=cands,
-    reference_images=["/path/to/real_a.png", "/path/to/real_b.png"],
-)[0]
-print(ex.value, ex.per_descriptor)
-print(m.exag.rank(ex, k=3))
-```
-
-### MLLM-as-a-judge
-
-Separate 1–5 Likert baseline (not part of ALIGN/HAL/EXAG above):
-
-```python
-from ahead.metrics.mllm_judge import MLLMJudge
-
-judge = MLLMJudge(mllm="gpt-4o")
-print(judge.evaluate("/path/to/image.png", concept="wedding", context="INDIA"))
-# {"align": ..., "hal": ..., "exag": ...}
-```
+</body>
+</html>
